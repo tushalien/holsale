@@ -90,10 +90,10 @@ CREATE TABLE `menu` (
 CREATE TABLE `shop` (
   `id` int(8) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `user_name` varchar()
+  `user_name` varchar(50) NOT NULL,
   `owner` varchar(50) NOT NULL,
   `document` longtext NOT NULL,
-  `Address` varchar(100) NOT NULL
+  `Address` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
