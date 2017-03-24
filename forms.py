@@ -51,3 +51,7 @@ class ForgotForm(Form):
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
+
+class SearchForm(Form):
+    query=TextField('Query',validators=[DataRequired()])
+
