@@ -122,6 +122,32 @@ def login2():
 
 	return render_template('pages/placeholder.home.html')
 
+
+@app.route('/add/',methods=['GET','POST'])
+def add():
+    if request.method == 'GET':
+        return render_template('add.html')
+    elif request.method == 'POST':
+        print "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+        data=request.form
+        print request.form
+        print data
+        print data['item']
+        print data['price']
+	shop_id=15
+	connection = mysql.get_db()
+	cursor = connection.cursor()
+	cursor.execute(
+		"""INSERT INTO 
+			menu (
+				shop_id,
+				item,
+				price)
+		VALUES (%s,%s,%s)""", (shop_id, data['item'], data['price']))
+	connection.commit()
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+
 # For customer signup
 @app.route('/cus_register', methods=['GET', 'POST'])
 def register():
