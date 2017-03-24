@@ -1,0 +1,54 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+
+<div class="container" id="fm1">
+  <div class="col-md-6">
+  <form method="post" class="form-horizontal" id="form_login" style="margin-top:100px;">
+    <h3 class="form-heading">Login <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <fieldset> 
+       <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Shopkeeper Phone</label>
+         <div class="col-lg-10">
+    {{ form.phone(class_ = 'form-control first-input', placeholder = form.phone.label.text, required = true, autofocus = true) }}
+    </div>
+    </div>
+    <br><br>
+     <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Password</label>
+
+         <div class="col-lg-10">
+    {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}
+    </div>
+    </div>
+    <p class="pull-left"><a href="{{ url_for('forgot') }}" style="color:#0E0B16;>Forgot Password?</a></p>
+    <p class="pull-right"><a href="{{ url_for('register') }}">Register</a></p>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-danger">Cancel</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+
+   <!-- <p>You must add database as well as Flask-Login to enable user management. See the <a href="http://www.realpython.com">Real Python</a> course for more info!</p>-->
+  </form>
+  </div>
+  </fieldset>
+  </form>
+  </div>
+  </div>
+
+
+
+
+
+
+
+ 
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,62 @@
+{% extends 'layouts/form.html' %}
+{% block title %}ADD{% endblock %}
+{% block content %}
+<br><br><br><br><br><br>
+ <div class="panel panel-default">
+               
+                <form >
+              <div class="input-group">
+                <input class="form-control input-sm" type="text" id="inputSmall1" placeholder="Add New Item ">   
+                <input class="form-control input-sm" type="text" id="inputSmall2" placeholder="Price ">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary btn-sm1" type="button" ><span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                </span>
+              </div>
+            </form>
+                  
+<br><br>
+<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"></script>
+ <script>
+    $(function() {
+        $(".btn.btn-primary.btn-sm1").click(function(evt) {
+            evt.preventDefault();
+            var element = $(this);
+            var test = $("#inputSmall1").val();   
+            var test2 = $("#inputSmall2").val();   
+            var dataString = 'item='+ test+ '&price='+ test2;
+            console.log(dataString);
+            document.getElementById('inputSmall1').value='';
+            document.getElementById('inputSmall2').value='';
+            if(test=='')
+             {
+                alert("Please Enter Some Text");        
+             }  
+             else
+             {
+                // $("#flash").show();
+                // $("#flash").fadeIn(400).html('<img src="images/495.gif" align="absmiddle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="loading">Adding Topic....</span>');
+                
+                    
+                    $.ajax({
+                    type: "POST",
+                     url: "http://127.0.0.1:25350/add/",
+                     data: dataString,
+                     cache: false,
+                        success: function(html){
+            
+            // $("#display").bef3ore(html);
+                          document.getElementById('inputSmall1').value='';
+                          document.getElementById('inputSmall2').value='';
+            // $("#flash").hide();
+        
+                        }
+                    });
+            }
+
+        return false;
+        });
+
+    });
+</script>
+{% endblock %}
