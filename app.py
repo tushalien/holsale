@@ -17,11 +17,11 @@ from flaskext.mysql import MySQL
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-<<<<<<< HEAD
+
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Payal@001'
-=======
+
 app.config['MYSQL_DATABASE_PASSWORD'] = 'prabhatd'
->>>>>>> 8b7d53715e573bdf5641ceb0f85b487c6fb85fae
+
 app.config['MYSQL_DATABASE_DB'] = 'test_db2'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -38,6 +38,33 @@ app.config.from_object('config')
 def home():
 	return render_template('pages/placeholder.home.html')
 
+
+@app.route('/search',methods=['GET','POST'])
+def search():
+
+	if 'username' not in session:
+		return redirect(url_for('login'))
+
+	else:
+		form=SearchForm(request.form)
+		#print("Hello")
+		if request.method=='GET':
+			return render_template('forms/search.html',form=form)
+		elif request.method=='POST':
+			#print("Raula")
+			query=request.form['query']
+			print(query)
+			connection = mysql.get_db()
+			cursor = connection.cursor()
+			cursor.execute("SELECT * FROM shop WHERE name = '"+query+"'");
+					
+
+			for row in cursor.fetchall():
+				print(row)
+
+			#connection.commit()
+
+			return "Hello"
 
 @app.route('/about')
 def about():
@@ -126,7 +153,7 @@ def login2():
 
 	return render_template('pages/placeholder.home.html')
 
-<<<<<<< HEAD
+
 
 @app.route('/add/',methods=['GET','POST'])
 def add():
@@ -153,8 +180,8 @@ def add():
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 
-=======
->>>>>>> 8b7d53715e573bdf5641ceb0f85b487c6fb85fae
+
+
 # For customer signup
 @app.route('/cus_register', methods=['GET', 'POST'])
 def register():
